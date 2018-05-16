@@ -1,8 +1,19 @@
-# Typescript module template
+# ImageBoss Typescript/Javascript API
 
-A typescript boilerplate to publish modules to npm
+This is an unofficial API for interacting with [ImageBoss](https://imageboss.me/) image manipulation via Javascript.
 
-## Usage
+## Installation
+
+```
+$> npm install --save imageboss
+```
+
+Or with Yarn:
+```
+$> yarn add imageboss
+```
+
+## Dev mode
 
 Clone this repo, and start adding your code in the `index.ts` file.  
 When you are done, write the tests in the `index.test.ts` file. For testing, this repo works with [Jest](https://facebook.github.io/jest/).
@@ -12,7 +23,7 @@ and send it to npm.
 
 Make sure to change the name of the package in `package.json`
 
-## Features
+## Dev Features
 * Testing with Jest
 * Linting out of the box (checks the style of your code), with TSLint
 * Build, prepublish and other scripts to help you to develop
@@ -24,7 +35,7 @@ Make sure to change the name of the package in `package.json`
 
 Developed by Juan Camilo Guarín Peñaranda,  
 Otherwise SAS, Colombia  
-2017
+2018
 
 ## License 
 
