@@ -1,7 +1,7 @@
 {
   "name": "imageboss",
   "version": "1.0.0",
-  "description": "A typescript boilerplate to publish modules to npm",
+  "description": "Typescript/Javascript API for Imageboss",
   "main": "out/index.js",
   "types": "out/index.d.ts",
   "scripts": {
@@ -46,10 +46,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owsas/typescript-module-template.git"
+    "url": "git+https://github.com/owsas/imageboss"
   },
   "bugs": {
-    "url": "https://github.com/owsas/typescript-module-template/issues"
+    "url": "https://github.com/owsas/imageboss/issues"
   },
-  "homepage": "https://github.com/owsas/typescript-module-template#readme"
+  "homepage": "https://github.com/owsas/imageboss#readme"
 }
