@@ -27,10 +27,21 @@ describe('#getURL', () => {
     test('should return the expected url', () => {
       const url = ImageBoss.getURL(
         'https://example.com/test.img', 
-        { operation: 'width', height: 500 },
+        { operation: 'height', height: 500 },
       );
       
       expect(url).toEqual('https://img.imageboss.me/height/500/https://example.com/test.img');
+    });
+  });
+
+  describe('cdn operation', () => {
+    test('should return the expected url', () => {
+      const url = ImageBoss.getURL(
+        'https://example.com/test.img', 
+        { operation: 'cdn' },
+      );
+      
+      expect(url).toEqual('https://img.imageboss.me/cdn/https://example.com/test.img');
     });
   });
 });
