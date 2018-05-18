@@ -1,5 +1,5 @@
 {
-  "name": "imageboss",
+  "name": "imageboss-js",
   "version": "1.0.0",
   "description": "Typescript/Javascript API for Imageboss",
   "main": "out/index.js",
