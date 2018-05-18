@@ -1,11 +1,12 @@
 import assert from './assert';
 
 export interface IGetURLParams {
-  operation: 'cover'|'width'|'height'|'cdn';
+  operation: string;
   asset?: boolean;
   width?: number;
   height?: number;
   options?: string; // example: 'sharpen:3'
+  assetHost?: string;
 }
 
 export class ImageBoss {
@@ -31,7 +32,7 @@ export class ImageBoss {
     const shouldHaveFilters: boolean = params.operation !== 'cdn';
 
     // Process the operation
-    if (params.operation === 'cover') {
+    if (params.operation.startsWith('cover')) {
       assert(params.width && params.height, 'cover operation requires width and height');
       url = `${url}/${params.width}x${params.height}`;
     } else if (params.operation === 'width') {
@@ -47,7 +48,7 @@ export class ImageBoss {
       url = `${url}/${params.options}`;
     }
 
-    return `${url}/${params.asset ? ImageBoss.assetHost : ''}${originalURL}`;
+    return `${url}/${params.asset ? params.assetHost || ImageBoss.assetHost : ''}${originalURL}`;
   }
 
 }
