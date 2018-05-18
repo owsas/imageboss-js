@@ -5,11 +5,7 @@ export interface IGetURLParams {
   asset?: boolean;
   width?: number;
   height?: number;
-  grayscale?: boolean;
-  blur?: number;
-  sharpen?: number;
-  trim?: number;
-  linear?: string;
+  options?: string; // example: 'sharpen:3'
 }
 
 export class ImageBoss {
@@ -18,7 +14,12 @@ export class ImageBoss {
   /**
    * Converts your original url to an url that uses Imageboss' services
    * @param originalURL
-   * @param params 
+   * @param params
+   * @example
+   * const url = ImageBoss.getURL(
+      'https://example.com/test.img', 
+      { operation: 'cdn', options: 'sharpen:4' },
+    );
    */
   static getURL(originalURL:string, params: IGetURLParams): string {
     if (!params.operation) {
@@ -42,19 +43,11 @@ export class ImageBoss {
     }
 
     // Add filters
-    if (shouldHaveFilters) {
-      if (params.grayscale) {
-        url = `${url}/grayscale:${params.grayscale}`;
-      } else if (params.blur) {
-        url = `${url}/blur:${params.blur}`;
-      } else if (params.sharpen) {
-        url = `${url}/sharpen:${params.sharpen}`;
-      } else if (params.trim) {
-        url = `${url}/trim:${params.trim}`;
-      }
+    if (shouldHaveFilters && params.options) {
+      url = `${url}/${params.options}`;
     }
 
-    return `${url}/${params.asset ? ImageBoss.assetHost + '/' : ''}${originalURL}`;
+    return `${url}/${params.asset ? ImageBoss.assetHost : ''}${originalURL}`;
   }
 
 }
