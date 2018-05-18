@@ -63,7 +63,7 @@ describe('#getURL', () => {
   });
 
   describe('working with asset host', () => {
-    test('should return the expected url',() => {
+    test('should return the expected url for a globally configured asset host',() => {
       ImageBoss.assetHost = 'https://files.com';
       
       const url = ImageBoss.getURL(
@@ -72,6 +72,23 @@ describe('#getURL', () => {
       );
       
       expect(url).toEqual('https://img.imageboss.me/width/400/blur:2/https://files.com/test.img');
+    });
+
+    test('should return the expected url using an assetHost as a parameter',() => {
+      ImageBoss.assetHost = 'https://files.com';
+      
+      const url = ImageBoss.getURL(
+        '/test.img', 
+        { 
+          operation: 'width', 
+          width: 400, 
+          options: 'blur:2', 
+          asset: true,
+          assetHost: 'https://files2.com',
+        },
+      );
+      
+      expect(url).toEqual('https://img.imageboss.me/width/400/blur:2/https://files2.com/test.img');
     });
   });
 });
