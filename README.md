@@ -71,6 +71,13 @@ const converted = ImageBoss.getURL(url, {
   width: 700,
   options: 'threshold:125'
 });
+
+// using multiple options
+const converted = ImageBoss.getURL(url, {
+  operation: 'width',
+  width: 700,
+  options: 'blur:2,grayscale:true'
+});
 ```
 
 If you have a place in which you save all the images of your project (say Amazon S3), you may configure an asset host. For example:
