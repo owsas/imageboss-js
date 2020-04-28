@@ -6,29 +6,30 @@ export interface IGetURLParams {
   width?: number;
   height?: number;
   options?: string; // example: 'sharpen:3'
-  assetHost?: string;
+  source?: string;
 }
 
 export class ImageBoss {
-  public static assetHost: string;
+  public static source: string;
 
   /**
-   * Converts your original url to an url that uses Imageboss' services
-   * @param originalURL
+   * Converts your image path to an url that uses Imageboss' services
+   * @param imagePath
    * @param params
    * @example
    * const url = ImageBoss.getURL(
-      'https://example.com/test.img', 
+      '/test.img',
       { operation: 'cdn', options: 'sharpen:4' },
     );
    */
-  static getURL(originalURL:string, params: IGetURLParams): string {
+  static getURL(imagePath:string, params: IGetURLParams): string {
     if (!params.operation) {
       throw new Error('please set an operation to perform');
     }
 
+    const source = params.source || ImageBoss.source;
     // get a clean url
-    let url: string = `https://img.imageboss.me/${params.operation}`;
+    let url: string = `https://img.imageboss.me/${source}/${params.operation}`;
     const shouldHaveFilters: boolean = params.operation !== 'cdn';
 
     // Process the operation
@@ -37,10 +38,10 @@ export class ImageBoss {
       url = `${url}/${params.width}x${params.height}`;
     } else if (params.operation === 'width') {
       assert(params.width, 'width operation requires the width as a parameter');
-      url = `${url}/${params.width}`;        
+      url = `${url}/${params.width}`;
     } else if (params.operation === 'height') {
       assert(params.height, 'height operation requires the height as a parameter');
-      url = `${url}/${params.height}`;        
+      url = `${url}/${params.height}`;
     }
 
     // Add filters
@@ -48,7 +49,7 @@ export class ImageBoss {
       url = `${url}/${params.options}`;
     }
 
-    return `${url}/${params.asset ? params.assetHost || ImageBoss.assetHost : ''}${originalURL}`;
+    return `${url}${imagePath}`;
   }
 
 }
